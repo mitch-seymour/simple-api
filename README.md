@@ -98,3 +98,24 @@ If the `id` parameter is not provided, or is not numeric, the following response
 
 As you can see, the SimpleAPI makes building an API easy. You don't have to lookup the HTTP codes for every possible error, the SimpleAPI will automatically respond with the appropriate codes when a fatal condition is met. Futhermore, the output buffer is cleaned before the response, so any notices or errors in your code will never be seen by the client.
 
+Finally, what if you want to validate multiple parameters? The usual syntax (using `isset`) gets even more verbose. But using the SimpleAPI, your code stays simple.
+
+```php
+$request->get()->expecting('id|int', 'name|string', 'phone|string');
+```
+
+### Optional Values ###
+Optional values can be denoted by placing a `?` right after the parameter name.
+
+```php
+$request->get()->expecting('id?|int'); // id is now optional
+$request->param('id'); // empty value, but no error 
+```
+### Default values ###
+
+A common use case for any RESTful API is providing default values when a parameter is not specified by the client. Expanding the syntax above, all we need to do to add a default value, is to put the desired default right after the `?`.
+
+```php
+$request->get()->expecting('id?1|int'); // id is now optional
+$request->param('id'); // if an id wasn't specified, this will be equal to 1
+```
