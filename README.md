@@ -139,3 +139,27 @@ Another common use case for RESTful APIs is distinguishing one request from anot
 ```php
 echo $request->token(); // echoes a token string identifying the request. e.g. AFR2gxYnWrHYqPjfw8q8OiYVFKKV5b
 ```
+
+### Cross-Origin Requests
+Support for cross-origin requests can be enabled using the `cors` method.
+
+```php
+$request->cors(); // CORS now supported :)
+```
+
+### API Keys ###
+Resources exposed by RESTful APIs are often protected. The SimpleAPI will automatically check for an API key or token if you use the `apikey` method. The API token can be passed by the client using one of two methods.
+
+First, the client can pass the `apikey` using the `apikey` parameter in a `GET` or `POST` request. Alternatively, the `apikey` can be passed in the `Authorization` header, with a value of `Token token={token}`, where `{token}` is equal to the client's `apikey`. This behavior is similar to other token-based APIs, like [PagerDuty](https://developer.pagerduty.com/documentation/integration/events).
+
+In order to validate the token, you can use the `apikey` method like so:
+
+```php
+$request->apikey(function($token){
+  
+  // check your datastore to see if the token is valid
+  // note: the token is automatically passed to this callback
+  // by the SimpleAPI
+
+});
+```
