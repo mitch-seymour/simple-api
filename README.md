@@ -132,3 +132,10 @@ Or...
 ```php
 $request->respond(500, array('error' => 1, 'message' => 'Some random server error!'));
 ```
+
+### Request tokens ###
+Another common use case for RESTful APIs is distinguishing one request from another. This can be done using the `token` method.
+
+```php
+echo $request->token(); // echoes a token string identifying the request. e.g. AFR2gxYnWrHYqPjfw8q8OiYVFKKV5b
+```
