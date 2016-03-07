@@ -119,3 +119,16 @@ A common use case for any RESTful API is providing default values when a paramet
 $request->get()->expecting('id?1|int'); // id is now optional
 $request->param('id'); // if an id wasn't specified, this will be equal to 1
 ```
+
+### JSON responses ###
+Responding to an incoming request is easy, as well. Simple pass the response code as the first parameter, and then a message, array, or object as the second parameter.
+
+```php
+$request->respond(200, 'Good to go!');
+```
+
+Or...
+
+```php
+$request->respond(500, array('error' => 1, 'message' => 'Some random server error!'));
+```
