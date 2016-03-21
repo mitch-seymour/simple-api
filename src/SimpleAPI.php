@@ -53,7 +53,7 @@ class RequestFactory {
  * // enforce an API key
  * ------------------------------------------------------------------------
  * $request->apikey(function($key){ 
- * 		// function for validating api key 
+ * 	// function for validating api key 
  *      // return true if the key is valid, and false if not
  * });
  *
@@ -169,7 +169,7 @@ class Request {
 	/**
 	 * Get the headers passed in the current request
 	 *
-	 * @return array $headers -An array of HTTP headers
+	 * @return array $headers - An array of HTTP headers
 	 */
 	public function headers(){
 			
@@ -179,7 +179,7 @@ class Request {
 		
 		if (!function_exists('getallheaders')) {
 		
-           $headers = ''; 
+           		$headers = ''; 
 		   
 			foreach ($_SERVER as $name => $value){ 
 			   if (substr($name, 0, 5) == 'HTTP_') { 
